@@ -3,27 +3,31 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0867044469A93BC0D14E69C5 /* Pods_leka_messenger_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB2DEA82A3FD862220553512 /* Pods_leka_messenger_app.framework */; };
 		45468C5323FA1D8800677873 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45468C5223FA1D8800677873 /* AppDelegate.swift */; };
 		45468C5523FA1D8800677873 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45468C5423FA1D8800677873 /* SceneDelegate.swift */; };
-		45468C5723FA1D8800677873 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45468C5623FA1D8800677873 /* ContentView.swift */; };
 		45468C5923FA1D8800677873 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45468C5823FA1D8800677873 /* Assets.xcassets */; };
 		45468C5C23FA1D8800677873 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45468C5B23FA1D8800677873 /* Preview Assets.xcassets */; };
 		45468C5F23FA1D8800677873 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45468C5D23FA1D8800677873 /* LaunchScreen.storyboard */; };
+		45468C6723FA2E3900677873 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 45468C6623FA2E3900677873 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		45468C4F23FA1D8800677873 /* leka-messenger-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "leka-messenger-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45468C5223FA1D8800677873 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45468C5423FA1D8800677873 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		45468C5623FA1D8800677873 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		45468C5823FA1D8800677873 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		45468C5B23FA1D8800677873 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		45468C5E23FA1D8800677873 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45468C6023FA1D8800677873 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45468C6623FA2E3900677873 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CADC46B7AD73041FCF087369 /* Pods-leka-messenger-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-leka-messenger-app.release.xcconfig"; path = "Target Support Files/Pods-leka-messenger-app/Pods-leka-messenger-app.release.xcconfig"; sourceTree = "<group>"; };
+		CB2DEA82A3FD862220553512 /* Pods_leka_messenger_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_leka_messenger_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2826277B09F7B43C512E4E3 /* Pods-leka-messenger-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-leka-messenger-app.debug.xcconfig"; path = "Target Support Files/Pods-leka-messenger-app/Pods-leka-messenger-app.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0867044469A93BC0D14E69C5 /* Pods_leka_messenger_app.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +47,8 @@
 			children = (
 				45468C5123FA1D8800677873 /* leka-messenger-app */,
 				45468C5023FA1D8800677873 /* Products */,
+				F440F751ACC56A1219191EEF /* Pods */,
+				86C2C436E59A13A94D7E70C1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,10 +65,10 @@
 			children = (
 				45468C5223FA1D8800677873 /* AppDelegate.swift */,
 				45468C5423FA1D8800677873 /* SceneDelegate.swift */,
-				45468C5623FA1D8800677873 /* ContentView.swift */,
 				45468C5823FA1D8800677873 /* Assets.xcassets */,
 				45468C5D23FA1D8800677873 /* LaunchScreen.storyboard */,
 				45468C6023FA1D8800677873 /* Info.plist */,
+				45468C6623FA2E3900677873 /* GoogleService-Info.plist */,
 				45468C5A23FA1D8800677873 /* Preview Content */,
 			);
 			path = "leka-messenger-app";
@@ -75,6 +82,23 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		86C2C436E59A13A94D7E70C1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CB2DEA82A3FD862220553512 /* Pods_leka_messenger_app.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F440F751ACC56A1219191EEF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D2826277B09F7B43C512E4E3 /* Pods-leka-messenger-app.debug.xcconfig */,
+				CADC46B7AD73041FCF087369 /* Pods-leka-messenger-app.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -82,9 +106,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 45468C6323FA1D8800677873 /* Build configuration list for PBXNativeTarget "leka-messenger-app" */;
 			buildPhases = (
+				357EC7EFA5EC43A5FFC5E0B5 /* [CP] Check Pods Manifest.lock */,
 				45468C4B23FA1D8800677873 /* Sources */,
 				45468C4C23FA1D8800677873 /* Frameworks */,
 				45468C4D23FA1D8800677873 /* Resources */,
+				48455F4B706CBD94325F6A74 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -134,12 +160,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				45468C5F23FA1D8800677873 /* LaunchScreen.storyboard in Resources */,
+				45468C6723FA2E3900677873 /* GoogleService-Info.plist in Resources */,
 				45468C5C23FA1D8800677873 /* Preview Assets.xcassets in Resources */,
 				45468C5923FA1D8800677873 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		357EC7EFA5EC43A5FFC5E0B5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-leka-messenger-app-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		48455F4B706CBD94325F6A74 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-leka-messenger-app/Pods-leka-messenger-app-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-leka-messenger-app/Pods-leka-messenger-app-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-leka-messenger-app/Pods-leka-messenger-app-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		45468C4B23FA1D8800677873 /* Sources */ = {
@@ -148,7 +217,6 @@
 			files = (
 				45468C5323FA1D8800677873 /* AppDelegate.swift in Sources */,
 				45468C5523FA1D8800677873 /* SceneDelegate.swift in Sources */,
-				45468C5723FA1D8800677873 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +350,7 @@
 		};
 		45468C6423FA1D8800677873 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D2826277B09F7B43C512E4E3 /* Pods-leka-messenger-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -302,6 +371,7 @@
 		};
 		45468C6523FA1D8800677873 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CADC46B7AD73041FCF087369 /* Pods-leka-messenger-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
