@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-//import FirebaseUI
 import TinyConstraints
 
 class SignInViewController: UIViewController {
@@ -29,6 +28,7 @@ class SignInViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = "Leka App"
+        navigationItem.backBarButtonItem = UIBarButtonItem(image: nil, style: .plain, target: nil, action: nil)
         view.backgroundColor = .white
         
         view.addSubview(segmented)
@@ -96,37 +96,16 @@ class SignInViewController: UIViewController {
         doneButton.layer.masksToBounds = true
         doneButton.addTarget(self, action: #selector(handleDone), for: .touchUpInside)
         doneButton.isEnabled = false
-        
-        
-//        //    FirebaseApp.configure()
-//        let authUI = FUIAuth.defaultAuthUI()
-//        // You need to adopt a FUIAuthDelegate protocol to receive callback
-//        authUI!.delegate = self
-//
-//        let providers: [FUIAuthProvider] = [
-//          FUIGoogleAuth(),
-//          FUIFacebookAuth(),
-//          FUITwitterAuth(),
-//          FUIPhoneAuth(authUI:FUIAuth.defaultAuthUI()),
-//        ]
-//        self.authUI.providers = providers
-//
-//        let authViewController = authUI.authViewController()
-//
-//        func authUI(_ authUI: FUIAuth, didSignInWith user: FIRUser?, error: Error?) {
-//          // handle user and error as necessary
-//        }
-
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
-                print("--> user logged in <--")
-                print(user.uid)
-                print(user.email)
-                print("------------------------")
+                self.navigationController?.pushViewController(MessageThreadsViewController(), animated: true)
+//                print("--> user logged in <--")
+//                print(user.uid)
+//                print(user.email)
+//                print("------------------------")
             }
         }
     }
@@ -142,6 +121,7 @@ class SignInViewController: UIViewController {
             confirmPassword.isHidden = true
             username.isHidden = true
             firstName.isHidden = true
+            doneButton.setTitle("Log-in", for: .normal)
             
             doneButton.removeFromSuperview()
             
@@ -153,6 +133,7 @@ class SignInViewController: UIViewController {
             confirmPassword.isHidden = false
             username.isHidden = false
             firstName.isHidden = false
+            doneButton.setTitle("Sign-up", for: .normal)
             
             doneButton.removeFromSuperview()
             
@@ -229,10 +210,9 @@ class SignInViewController: UIViewController {
               // ...
             }
         }
-        
     }
 }
 
-/*
- - Set up Firebase auth
-*/
+// Validate email address
+// Show error if password is wrong for Log-in
+// Add haptics
