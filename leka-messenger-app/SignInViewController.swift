@@ -13,6 +13,7 @@ import TinyConstraints
 class SignInViewController: UIViewController {
     
     var handle: AuthStateDidChangeListenerHandle?
+    let db = Firestore.firestore()
     
     let segmented = UISegmentedControl()
     let email = UITextField()
@@ -101,7 +102,7 @@ class SignInViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
-                self.navigationController?.pushViewController(MessageThreadsViewController(), animated: true)
+                self.navigationController?.pushViewController(AllConversationsViewController(), animated: true)
 //                print("--> user logged in <--")
 //                print(user.uid)
 //                print(user.email)
@@ -200,14 +201,20 @@ class SignInViewController: UIViewController {
               // ...
             }
         } else if viewType == "Sign-up" {
-            print("SIGN-UP")
-            print("Email: \(email.text!)")
-            print("Password: \(password.text!)")
-            print("Username: \(username.text!)")
-            print("First name: \(firstName.text!)")
+            let data = [
+                "email": email.text!,
+                "username": username.text!,
+                "firstName": firstName.text!,
+                "createdAt": Date(),
+                ] as [String : Any]
+//            print("SIGN-UP")
+//            print("Email: \(email.text!)")
+//            print("Password: \(password.text!)")
+//            print("Username: \(username.text!)")
+//            print("First name: \(firstName.text!)")
             
             Auth.auth().createUser(withEmail: email.text!, password: password.text!) { authResult, error in
-              // ...
+                self.db.collection("users").document(self.email.text!).setData(data, merge: true)
             }
         }
     }
@@ -216,3 +223,6 @@ class SignInViewController: UIViewController {
 // Validate email address
 // Show error if password is wrong for Log-in
 // Add haptics
+// Send user data to db, figure out how to tie it to auth
+// If user already exists, don't let them make a new account
+// username can't be taken -> maybe replace with just using email

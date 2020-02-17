@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewMessageViewController: UITableViewController {
+class NewConversationViewController: UITableViewController {
     
 //    let navBar = UINavigationController()
 
