@@ -15,6 +15,7 @@ class SignInViewController: UIViewController {
     
     let segmented = UISegmentedControl()
     let username = UITextField()
+    let email = UITextField()
     let password = UITextField()
     let confirmPassword = UITextField()
     let firstName = UITextField()
@@ -30,6 +31,7 @@ class SignInViewController: UIViewController {
         
         view.addSubview(segmented)
         view.addSubview(username)
+        view.addSubview(email)
         view.addSubview(password)
         view.addSubview(confirmPassword)
         view.addSubview(firstName)
@@ -48,7 +50,13 @@ class SignInViewController: UIViewController {
         username.autocapitalizationType = .none
         username.addTarget(self, action: #selector(enableButton), for: .allEditingEvents)
         
-        password.top(to: username, offset: 50)
+        email.top(to: username, offset: 50)
+        email.centerXToSuperview()
+        email.placeholder = "email"
+        email.autocapitalizationType = .none
+        email.addTarget(self, action: #selector(enableButton), for: .allEditingEvents)
+        
+        password.top(to: email, offset: 50)
         password.centerXToSuperview()
         password.placeholder = "password"
         password.isSecureTextEntry = true
@@ -59,11 +67,13 @@ class SignInViewController: UIViewController {
         confirmPassword.placeholder = "confirm password"
         confirmPassword.isSecureTextEntry = true
         confirmPassword.isHidden = true
+        confirmPassword.addTarget(self, action: #selector(enableButton), for: .allEditingEvents)
         
         firstName.top(to: confirmPassword, offset: 50)
         firstName.centerXToSuperview()
         firstName.placeholder = "first name"
         firstName.isHidden = true
+        firstName.addTarget(self, action: #selector(enableButton), for: .allEditingEvents)
         
         doneButton.top(to: password, offset: 50)
         doneButton.centerXToSuperview()
@@ -105,6 +115,7 @@ class SignInViewController: UIViewController {
     @objc func handleViewType() {
         if segmented.titleForSegment(at: segmented.selectedSegmentIndex)! == "Log-in" {
             viewType = "Log-in"
+            password.backgroundColor = .white
             confirmPassword.isHidden = true
             firstName.isHidden = true
             
@@ -127,15 +138,44 @@ class SignInViewController: UIViewController {
             print("Error => Segmented control triggered default case")
         }
         print(viewType)
+        enableButton()
     }
     
     @objc func enableButton() {
-        if username.text != "" && password.text != "" {
-            doneButton.setTitleColor(.black, for: .normal)
-            doneButton.isEnabled = true
-        } else {
-            doneButton.setTitleColor(.gray, for: .normal)
-            doneButton.isEnabled = false
+        if viewType == "Log-in" {
+            if username.text != "" && email.text != "" && password.text != "" {
+                doneButton.setTitleColor(.black, for: .normal)
+                doneButton.isEnabled = true
+            } else {
+                doneButton.setTitleColor(.gray, for: .normal)
+                doneButton.isEnabled = false
+            }
+        } else if viewType == "Sign-up" {
+            var passwordsMatch = false
+            
+            if password.text != confirmPassword.text && viewType == "Sign-up" || password.text == "" {
+                password.backgroundColor = #colorLiteral(red: 0.9813225865, green: 0.2694862527, blue: 0.2451137677, alpha: 1)
+                confirmPassword.backgroundColor = #colorLiteral(red: 0.9813225865, green: 0.2694862527, blue: 0.2451137677, alpha: 1)
+                doneButton.setTitleColor(.gray, for: .normal)
+                passwordsMatch = false
+            } else {
+                password.backgroundColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
+                confirmPassword.backgroundColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
+                doneButton.setTitleColor(.black, for: .normal)
+                passwordsMatch = true
+            }
+            
+            if username.text != "" &&
+                email.text != "" &&
+                password.text != "" &&
+                passwordsMatch == true &&
+                firstName.text != "" {
+                    doneButton.setTitleColor(.black, for: .normal)
+                    doneButton.isEnabled = true
+            } else {
+                doneButton.setTitleColor(.gray, for: .normal)
+                doneButton.isEnabled = false
+            }
         }
     }
     
@@ -143,10 +183,12 @@ class SignInViewController: UIViewController {
         if viewType == "Log-in" {
             print("LOG-IN:")
             print("Username: \(username.text!)")
+            print("Email: \(email.text!)")
             print("Password: \(password.text!)")
         } else if viewType == "Sign-up" {
             print("SIGN-UP")
             print("Username: \(username.text!)")
+            print("Email: \(email.text!)")
             print("Password: \(password.text!)")
             print("First name: \(firstName.text!)")
         }
@@ -155,5 +197,5 @@ class SignInViewController: UIViewController {
 }
 
 /*
- - Show way to confirm password
+ - Set up Firebase auth
  */
