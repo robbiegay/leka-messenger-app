@@ -8,6 +8,9 @@ target 'leka-messenger-app' do
   # Pods for leka-messenger-app
   pod 'TinyConstraints'
   pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'FirebaseUI/Auth'
+  pod 'FirebaseUI/Email'
   pod 'FirebaseFirestore'
   pod 'FirebaseFirestoreSwift'
 end
