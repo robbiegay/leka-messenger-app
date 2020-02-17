@@ -7,12 +7,12 @@
 //
 
 import UIKit
+import FirebaseFirestore
 import FirebaseAuth
 
 class MessageThreadsViewController: UITableViewController {
 
     var handle: AuthStateDidChangeListenerHandle?
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,9 +21,7 @@ class MessageThreadsViewController: UITableViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "signout", style: .plain, target: self, action: #selector(handleSignOut))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(imageLiteralResourceName: "newMessage"), style: .plain, target: self, action: #selector(handleNewMessage))
     }
-    
-    //target: self, action: #selector(handleSignOut)
-    
+        
     override func viewWillAppear(_ animated: Bool) {
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
@@ -45,7 +43,7 @@ class MessageThreadsViewController: UITableViewController {
     }
     
     @objc func handleNewMessage() {
-        print("New message")
+        navigationController?.present(NewMessageViewController(), animated: true, completion: nil)
     }
 }
 

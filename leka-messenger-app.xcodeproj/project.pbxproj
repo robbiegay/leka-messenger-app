@@ -16,6 +16,7 @@
 		45468C6723FA2E3900677873 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 45468C6623FA2E3900677873 /* GoogleService-Info.plist */; };
 		45468C6923FA33C800677873 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45468C6823FA33C800677873 /* SignInViewController.swift */; };
 		45C0DD1423FAF2EC0031194F /* MessageThreadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C0DD1323FAF2EC0031194F /* MessageThreadsViewController.swift */; };
+		45C0DD1623FAFE460031194F /* NewMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C0DD1523FAFE460031194F /* NewMessageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		45468C6623FA2E3900677873 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		45468C6823FA33C800677873 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		45C0DD1323FAF2EC0031194F /* MessageThreadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageThreadsViewController.swift; sourceTree = "<group>"; };
+		45C0DD1523FAFE460031194F /* NewMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageViewController.swift; sourceTree = "<group>"; };
 		CADC46B7AD73041FCF087369 /* Pods-leka-messenger-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-leka-messenger-app.release.xcconfig"; path = "Target Support Files/Pods-leka-messenger-app/Pods-leka-messenger-app.release.xcconfig"; sourceTree = "<group>"; };
 		CB2DEA82A3FD862220553512 /* Pods_leka_messenger_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_leka_messenger_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2826277B09F7B43C512E4E3 /* Pods-leka-messenger-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-leka-messenger-app.debug.xcconfig"; path = "Target Support Files/Pods-leka-messenger-app/Pods-leka-messenger-app.debug.xcconfig"; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 		45468C5123FA1D8800677873 /* leka-messenger-app */ = {
 			isa = PBXGroup;
 			children = (
+				45C0DD1523FAFE460031194F /* NewMessageViewController.swift */,
 				45468C6823FA33C800677873 /* SignInViewController.swift */,
 				45C0DD1323FAF2EC0031194F /* MessageThreadsViewController.swift */,
 				45468C5223FA1D8800677873 /* AppDelegate.swift */,
@@ -223,6 +226,7 @@
 			files = (
 				45C0DD1423FAF2EC0031194F /* MessageThreadsViewController.swift in Sources */,
 				45468C5323FA1D8800677873 /* AppDelegate.swift in Sources */,
+				45C0DD1623FAFE460031194F /* NewMessageViewController.swift in Sources */,
 				45468C5523FA1D8800677873 /* SceneDelegate.swift in Sources */,
 				45468C6923FA33C800677873 /* SignInViewController.swift in Sources */,
 			);
