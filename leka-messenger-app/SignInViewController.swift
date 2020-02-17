@@ -8,16 +8,18 @@
 
 import UIKit
 import Firebase
-import FirebaseUI
+//import FirebaseUI
 import TinyConstraints
 
 class SignInViewController: UIViewController {
     
+    var handle: AuthStateDidChangeListenerHandle?
+    
     let segmented = UISegmentedControl()
-    let username = UITextField()
     let email = UITextField()
     let password = UITextField()
     let confirmPassword = UITextField()
+    let username = UITextField()
     let firstName = UITextField()
     let doneButton = UIButton()
     
@@ -30,10 +32,10 @@ class SignInViewController: UIViewController {
         view.backgroundColor = .white
         
         view.addSubview(segmented)
-        view.addSubview(username)
         view.addSubview(email)
         view.addSubview(password)
         view.addSubview(confirmPassword)
+        view.addSubview(username)
         view.addSubview(firstName)
         view.addSubview(doneButton)
         
@@ -44,34 +46,40 @@ class SignInViewController: UIViewController {
         segmented.selectedSegmentIndex = 0
         segmented.addTarget(self, action: #selector(handleViewType), for: .valueChanged)
         
-        username.top(to: segmented, offset: 50)
-        username.centerXToSuperview()
-        username.placeholder = "username"
-        username.autocapitalizationType = .none
-        username.addTarget(self, action: #selector(enableButton), for: .allEditingEvents)
-        
-        email.top(to: username, offset: 50)
+        email.top(to: segmented, offset: 50)
         email.centerXToSuperview()
         email.placeholder = "email"
+        email.textAlignment = .center
         email.autocapitalizationType = .none
         email.addTarget(self, action: #selector(enableButton), for: .allEditingEvents)
         
         password.top(to: email, offset: 50)
         password.centerXToSuperview()
         password.placeholder = "password"
+        password.textAlignment = .center
         password.isSecureTextEntry = true
         password.addTarget(self, action: #selector(enableButton), for: .allEditingEvents)
         
         confirmPassword.top(to: password, offset: 50)
         confirmPassword.centerXToSuperview()
         confirmPassword.placeholder = "confirm password"
+        confirmPassword.textAlignment = .center
         confirmPassword.isSecureTextEntry = true
         confirmPassword.isHidden = true
         confirmPassword.addTarget(self, action: #selector(enableButton), for: .allEditingEvents)
         
-        firstName.top(to: confirmPassword, offset: 50)
+        username.top(to: confirmPassword, offset: 50)
+        username.centerXToSuperview()
+        username.placeholder = "username"
+        username.textAlignment = .center
+        username.autocapitalizationType = .none
+        username.isHidden = true
+        username.addTarget(self, action: #selector(enableButton), for: .allEditingEvents)
+        
+        firstName.top(to: username, offset: 50)
         firstName.centerXToSuperview()
         firstName.placeholder = "first name"
+        firstName.textAlignment = .center
         firstName.isHidden = true
         firstName.addTarget(self, action: #selector(enableButton), for: .allEditingEvents)
         
@@ -93,7 +101,7 @@ class SignInViewController: UIViewController {
 //        //    FirebaseApp.configure()
 //        let authUI = FUIAuth.defaultAuthUI()
 //        // You need to adopt a FUIAuthDelegate protocol to receive callback
-//        authUI!.delegate = self as! FUIAuthDelegate
+//        authUI!.delegate = self
 //
 //        let providers: [FUIAuthProvider] = [
 //          FUIGoogleAuth(),
@@ -112,11 +120,27 @@ class SignInViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+            if let user = user {
+                print("--> user logged in <--")
+                print(user.uid)
+                print(user.email)
+                print("------------------------")
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        Auth.auth().removeStateDidChangeListener(handle!)
+    }
+    
     @objc func handleViewType() {
         if segmented.titleForSegment(at: segmented.selectedSegmentIndex)! == "Log-in" {
             viewType = "Log-in"
             password.backgroundColor = .white
             confirmPassword.isHidden = true
+            username.isHidden = true
             firstName.isHidden = true
             
             doneButton.removeFromSuperview()
@@ -127,6 +151,7 @@ class SignInViewController: UIViewController {
         } else if segmented.titleForSegment(at: segmented.selectedSegmentIndex)! == "Sign-up" {
             viewType = "Sign-up"
             confirmPassword.isHidden = false
+            username.isHidden = false
             firstName.isHidden = false
             
             doneButton.removeFromSuperview()
@@ -143,7 +168,7 @@ class SignInViewController: UIViewController {
     
     @objc func enableButton() {
         if viewType == "Log-in" {
-            if username.text != "" && email.text != "" && password.text != "" {
+            if email.text != "" && password.text != "" {
                 doneButton.setTitleColor(.black, for: .normal)
                 doneButton.isEnabled = true
             } else {
@@ -153,7 +178,11 @@ class SignInViewController: UIViewController {
         } else if viewType == "Sign-up" {
             var passwordsMatch = false
             
-            if password.text != confirmPassword.text && viewType == "Sign-up" || password.text == "" {
+            if password.text == "" {
+                password.backgroundColor = .white
+                confirmPassword.backgroundColor = .white
+                passwordsMatch = false
+            } else if password.text != confirmPassword.text && viewType == "Sign-up" {
                 password.backgroundColor = #colorLiteral(red: 0.9813225865, green: 0.2694862527, blue: 0.2451137677, alpha: 1)
                 confirmPassword.backgroundColor = #colorLiteral(red: 0.9813225865, green: 0.2694862527, blue: 0.2451137677, alpha: 1)
                 doneButton.setTitleColor(.gray, for: .normal)
@@ -165,10 +194,10 @@ class SignInViewController: UIViewController {
                 passwordsMatch = true
             }
             
-            if username.text != "" &&
-                email.text != "" &&
+            if email.text != "" &&
                 password.text != "" &&
                 passwordsMatch == true &&
+                username.text != "" &&
                 firstName.text != "" {
                     doneButton.setTitleColor(.black, for: .normal)
                     doneButton.isEnabled = true
@@ -182,15 +211,23 @@ class SignInViewController: UIViewController {
     @objc func handleDone() {
         if viewType == "Log-in" {
             print("LOG-IN:")
-            print("Username: \(username.text!)")
             print("Email: \(email.text!)")
             print("Password: \(password.text!)")
+            
+            Auth.auth().signIn(withEmail: email.text!, password: password.text!) { [weak self] authResult, error in
+              guard let strongSelf = self else { return }
+              // ...
+            }
         } else if viewType == "Sign-up" {
             print("SIGN-UP")
-            print("Username: \(username.text!)")
             print("Email: \(email.text!)")
             print("Password: \(password.text!)")
+            print("Username: \(username.text!)")
             print("First name: \(firstName.text!)")
+            
+            Auth.auth().createUser(withEmail: email.text!, password: password.text!) { authResult, error in
+              // ...
+            }
         }
         
     }
@@ -198,4 +235,4 @@ class SignInViewController: UIViewController {
 
 /*
  - Set up Firebase auth
- */
+*/

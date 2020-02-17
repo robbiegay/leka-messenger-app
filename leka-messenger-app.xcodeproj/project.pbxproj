@@ -114,7 +114,6 @@
 				45468C4C23FA1D8800677873 /* Frameworks */,
 				45468C4D23FA1D8800677873 /* Resources */,
 				48455F4B706CBD94325F6A74 /* [CP] Embed Pods Frameworks */,
-				855377328AD02407CAFBBDCF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -210,23 +209,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-leka-messenger-app/Pods-leka-messenger-app-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		855377328AD02407CAFBBDCF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-leka-messenger-app/Pods-leka-messenger-app-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-leka-messenger-app/Pods-leka-messenger-app-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-leka-messenger-app/Pods-leka-messenger-app-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
