@@ -19,6 +19,7 @@ class AllConversationsViewController: UITableViewController {
     
     var conversations: [Any] = []
     var messages: [Any] = []
+    var username = ""
     var numOfRows = 0
     
     override func viewDidLoad() {
@@ -41,6 +42,11 @@ class AllConversationsViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
+        
+        let data = db.collection("users").document(userEmail!).getDocument { (document, error) in
+            self.username = document?.data()!["username"] as! String
+            self.tableView.reloadData()
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -55,7 +61,13 @@ class AllConversationsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(SingleConversationViewController(), animated: true)
+        let singleConversationVC = SingleConversationViewController()
+        let user = username
+        let partner = conversations[indexPath.row] as! String
+        let messagesData = messages[indexPath.row]
+        singleConversationVC.populate(user: user, partner: partner, messages: messagesData)
+        
+        navigationController?.pushViewController(singleConversationVC, animated: true)
     }
     
     @objc func handleSignOut() {

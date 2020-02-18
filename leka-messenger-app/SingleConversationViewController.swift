@@ -9,12 +9,27 @@
 import UIKit
 
 class SingleConversationViewController: UITableViewController {
-
+    var conversationOwner = ""
+    var conversationWith = ""
+    var messagesData: Any = ""
+    
+    func populate(user:String, partner:String, messages:Any) {
+        navigationItem.title = partner
+        
+        conversationOwner = user
+        conversationWith = partner
+        messagesData = messages
+        print("user =>",conversationOwner)
+        print("partner =>",conversationWith)
+        print("messages =>",messagesData)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .purple
+        
     }
+    
+    
 }
 
 /*
