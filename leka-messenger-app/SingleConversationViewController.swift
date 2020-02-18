@@ -11,14 +11,15 @@ import UIKit
 class SingleConversationViewController: UITableViewController {
     var conversationOwner = ""
     var conversationWith = ""
-    var messagesData: Any = ""
+    var messagesData: [String:Any] = [:]
+    var messages: [String] = []
     
     func populate(user:String, partner:String, messages:Any) {
         navigationItem.title = partner
         
         conversationOwner = user
         conversationWith = partner
-        messagesData = messages
+        messagesData = messages as! [String:Any]
         print("user =>",conversationOwner)
         print("partner =>",conversationWith)
         print("messages =>",messagesData)
@@ -27,9 +28,22 @@ class SingleConversationViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        for (key, value) in messagesData {
+            if let data = value as? [String:Any] {
+                messages.append(data["body"] as! String)
+            }
+        }
     }
     
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messagesData.count
+    }
     
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = messages[indexPath.row]
+        return cell
+    }
 }
 
 /*
