@@ -18,6 +18,7 @@ class SingleConversationViewController: UITableViewController {
     var dates: [String] = []
     
     let typeZone = UITextField()
+    let sendButton = UIButton()
     
     func populate(user:String, partner:String, messages:Any) {
         navigationItem.title = partner
@@ -38,6 +39,9 @@ class SingleConversationViewController: UITableViewController {
         typeZone.width(view.frame.width)
         typeZone.height(50)
         typeZone.placeholder = "Type here"
+        
+        typeZone.rightView = sendButton
+        sendButton.setImage(<#T##image: UIImage?##UIImage?#>, for: <#T##UIControl.State#>)
         
         for (key, value) in messagesData {
             if let data = value as? [String:Any] {
