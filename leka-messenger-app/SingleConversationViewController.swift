@@ -17,7 +17,7 @@ class SingleConversationViewController: UITableViewController {
     var authors: [String] = []
     var dates: [String] = []
     
-    let typeZone = UITextField()
+    let typeZone = UITextView()
     let sendButton = UIButton()
     
     func populate(user:String, partner:String, messages:Any) {
@@ -32,16 +32,21 @@ class SingleConversationViewController: UITableViewController {
         super.viewDidLoad()
         
         view.addSubview(typeZone)
-        typeZone.topToSuperview(offset: 700)
+        typeZone.bottomToSuperview(offset: view.frame.height - 100)
         typeZone.leadingToSuperview()
-        typeZone.borderStyle = .line
         typeZone.layer.borderWidth = 3
         typeZone.width(view.frame.width)
-        typeZone.height(50)
-        typeZone.placeholder = "Type here"
+        typeZone.font = UIFont(name: "AmericanTypewriter", size: 25)
+        typeZone.returnKeyType = .send
+//        typeZone.
         
-        typeZone.rightView = sendButton
-        sendButton.setImage(<#T##image: UIImage?##UIImage?#>, for: <#T##UIControl.State#>)
+        typeZone.addSubview(sendButton)
+//        typeZone.rightView = sendButton
+//        typeZone.rightViewMode = .always
+        sendButton.setTitle("send", for: .normal)
+        
+        typeZone.isScrollEnabled = false
+        typeZone.setHugging(.defaultLow, for: .vertical)
         
         for (key, value) in messagesData {
             if let data = value as? [String:Any] {
